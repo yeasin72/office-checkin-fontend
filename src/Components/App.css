@@ -1,0 +1,65 @@
+* {
+  box-sizing: border-box;
+}
+@font-face {
+  font-family: Quicksand-Regular;
+  src: url(./../assets/fonts/Quicksand/Quicksand-Medium.ttf) format("truetype");
+}
+@font-face {
+  font-family: PlayfairDisplay-Bold;
+  src: url(./../assets/fonts/Playfair_Display/PlayfairDisplay-Bold.ttf) format("truetype");
+}
+@font-face {
+  font-family: PlayfairDisplay-SemiBold;
+  src: url(./../assets/fonts/Playfair_Display/PlayfairDisplay-SemiBold.ttf) format("truetype");
+}
+:root{
+  --text-font: Quicksand-Regular,sans-serif;
+  --heading-font: PlayfairDisplay-Bold,sans-serif;
+  --small-heading-font: PlayfairDisplay-SemiBold,sans-serif;
+  --panel-color: #060a30;
+  --dashboard-background: #F7F7F7;
+  --dashboard-heading: #404145;
+  --dashboard-text: #7a7d85;
+  --dashboard-card-bg: #FFFFFF;
+  --dashboard-card-border: #e4e5e7;
+  --button-color: #1E90FF;
+}
+.App{
+  margin: 0;
+  padding: 0;
+  background: var(--background);
+  color: var(--text-color);
+  font-family: var(--text-font);
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 28px;
+}
+.container{
+  width: 1300px;
+  margin: 0 auto;
+  padding: 0;
+  height: auto;
+}
+@media screen and (max-width:1024px) {
+  .container{
+      width: 100%;
+  }
+}
+
+h1,h2,h3,h4,h5,h6,p{
+  margin: 0;
+}
+
+h2{
+  font-family: var(--heading-font);
+}
+img{
+  width: 100px;
+}
+a {
+  text-decoration: none;
+}
+p{
+  color: var(--text-color);
+}

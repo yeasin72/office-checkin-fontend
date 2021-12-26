@@ -1,0 +1,27 @@
+.sidebar{
+    width: 80px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--panel-color);
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-right: 1px solid #2c2c2c;
+}
+.sidebar-item{
+    height: 70px;
+    border-bottom: 1px solid #2c2c2c;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.sidebar-item a{
+    font-size: 35px;
+    color: var(--dashboard-background);
+}
+.sidebar-item a:hover{
+    color: var(--button-color);
+    transition: 0.3s;
+}
