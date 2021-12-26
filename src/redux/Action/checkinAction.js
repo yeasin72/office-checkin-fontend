@@ -8,6 +8,7 @@ export const checkinAction = (checkine, loge) => async (dispatch) => {
         
         const checkin = await axios.post(`${API}/check-in`, checkine)
         const log = await axios.post(`${API}/access-log`, loge)
+        console.log("log",log);
         dispatch({
             type: CHECKIN_RES,
             payload: (log && checkin) && 'checkin success',

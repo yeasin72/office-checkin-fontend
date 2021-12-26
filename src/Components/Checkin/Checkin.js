@@ -15,7 +15,7 @@ const Checkin = () => {
     const checkIN = useSelector(state => state.checkIN);
     const { checkindata } = checkIN
 
-    const accessType =  'Checkout'
+    const accessType =  'Checkin'
 
     //  Select feild data
     const options = [
