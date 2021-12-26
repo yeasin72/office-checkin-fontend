@@ -18,7 +18,7 @@ const Sidebar = () => {
                 </Link>
             </div>
             <div className="sidebar-item" title='Check out'>
-                <Link to="">
+                <Link to="/check-out">
                     <FontAwesomeIcon icon={faSignInAlt} />
                 </Link>
             </div>

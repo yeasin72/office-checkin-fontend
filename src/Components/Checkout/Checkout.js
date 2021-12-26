@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import './Checkin.css'
+import './../Checkin/Checkin.css'
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Select from 'react-select'
 
-const Checkin = () => {
+const Checkout = () => {
     const [alert, setalert] = useState(false)
 
     const options = [
@@ -13,7 +13,7 @@ const Checkin = () => {
         { value: 'Sohag', label: 'Sohag' },
         { value: 'Musfik', label: 'Musfik' },
         { value: 'Ibne sina', label: 'Ibne sina' },
-      ]
+    ]
     return (
         <div className='checkin'>
             <div className="container">
@@ -30,13 +30,13 @@ const Checkin = () => {
                     :
                     <div className="form">
                         <div className="heading">
-                            <h3>Check in form</h3>
+                            <h3>Check out form</h3>
                         </div>
                         <div className="form-item st">
                             <Select options={options} />
                         </div>
                         <div className="form-item">
-                            <div className="checkin-btn" onClick={() => setalert(!alert)}>Check in</div>
+                            <div className="checkin-btn" onClick={() => setalert(!alert)}>Check Out</div>
                         </div>
                     </div>
                     }
@@ -46,4 +46,4 @@ const Checkin = () => {
     )
 }
 
-export default Checkin
+export default Checkout

@@ -81,13 +81,19 @@
     border-radius: 4px;
     cursor: pointer;
 }
+.heading h3{
+    font-family: var(--heading-font);
+    font-size: 30px;
+    color: var(--dashboard-heading);
+    text-align: center;
+}
 .checkin-btn:hover{
     background-color: var(--panel-color);
     transition: 0.3s;
 }
 .form-item.st{
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     gap: 10px;
 }
 .stuff{

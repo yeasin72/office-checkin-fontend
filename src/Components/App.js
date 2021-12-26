@@ -3,6 +3,7 @@ import { Routes, Route, BrowserRouter as Router } from 'react-router-dom'
 import Sidebar from './Sidebar/Sidebar';
 import Dashboard from './Dashboard/Dashboard';
 import Checkin from './Checkin/Checkin';
+import Checkout from './Checkout/Checkout';
 
 function App() {
   return (
@@ -18,6 +19,12 @@ function App() {
             <>
               <Sidebar />
               <Checkin />
+            </>
+          } />
+          <Route path="/check-out" element={
+            <>
+              <Sidebar />
+              <Checkout />
             </>
           } />
         </Routes>
