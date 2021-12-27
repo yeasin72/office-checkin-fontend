@@ -4,6 +4,7 @@ import Sidebar from './Sidebar/Sidebar';
 import Dashboard from './Dashboard/Dashboard';
 import Checkin from './Checkin/Checkin';
 import Checkout from './Checkout/Checkout';
+import Createuser from './Createuser/Createuser';
 
 function App() {
   return (
@@ -25,6 +26,12 @@ function App() {
             <>
               <Sidebar />
               <Checkout />
+            </>
+          } />
+          <Route path="/user" element={
+            <>
+              <Sidebar />
+              <Createuser />
             </>
           } />
         </Routes>

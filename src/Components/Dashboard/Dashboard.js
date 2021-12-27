@@ -28,7 +28,7 @@ const Dashboard = () => {
                         <div className="icon">
                             Icon
                         </div>
-                            <div className="name">Employe Name</div>
+                            <div className="name">Employee Name</div>
                             <div className="date">Date</div>
                             <div className="time">Time</div>
                             <div className="access-type">Access Type</div>

@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Select from 'react-select'
 import { useDispatch, useSelector } from 'react-redux';
 import { checkinAction } from '../../redux/Action/checkinAction'
+import { getuserAction } from '../../redux/Action/getuserAction'
 
 const Checkin = () => {
     const dispatch = useDispatch()
@@ -13,30 +14,32 @@ const Checkin = () => {
 
     // response from server
     const checkIN = useSelector(state => state.checkIN);
-    const { checkindata } = checkIN
+    const { checkindata, warning } = checkIN
+    const grtalluser = useSelector(state => state.grtalluser);
+    const { users, userloading } = grtalluser
 
-    const accessType =  'Checkin'
+    let userdata = []
+    if (users !== null ) {
+        for (let e = 0; e < users.length; e++) {
+            userdata.push({
+                label: users[e].label,
+                value: users[e]._id
+            })
+        }
+    }
 
-    //  Select feild data
-    const options = [
-        { value: 'Masum', label: 'Masum' },
-        { value: 'Nadim', label: 'Nadim' },
-        { value: 'Sohag', label: 'Sohag' },
-        { value: 'Musfik', label: 'Musfik' },
-        { value: 'Ibne sina', label: 'Ibne sina' },
-    ]
+
+    React.useEffect(() => {
+        dispatch(getuserAction())
+    }, [dispatch])
 
     //  to checkout 
     function checkIn() {
-        const checkindata = {
-            "name": name
-        }
-        const logdata = {
-            "name": name,
-            "accessType": accessType
-        }
-        dispatch(checkinAction(checkindata, logdata))
+        const updatedData = users.find(x => x._id === name)
+    
+        dispatch(checkinAction(updatedData))
         setalert(false)
+        userdata.slice(0, userdata.length)
     }
 
     return (
@@ -54,22 +57,32 @@ const Checkin = () => {
                     </div>
                     :
                     <div className="form">
-                        <div className="heading">
-                            <h3>Check in form</h3>
+                        {userloading ?
+                        <div className="loading" style={{height: `173px`}}>
+                            Loading...
                         </div>
-                        <div className="form-item st">
-                            <Select options={options} onChange={(e) => setname(e.value)} />
-                        </div>
-                        <div className="form-item">
-                            <div className="checkin-btn" onClick={() => setalert(!alert)}>Check in</div>
-                        </div>
+                        :
+                        <>
+                            <div className="heading">
+                                <h3>Check in form</h3>
+                            </div>
+                            <div className="form-item st">
+                                {userdata &&
+                                <Select options={userdata} onChange={(e) => setname(e.value)} />
+                                }
+                            </div>
+                            <div className="form-item">
+                                <div className="checkin-btn" onClick={() => setalert(!alert)}>Check in</div>
+                            </div>
+                        </>
+                        }
                     </div>
                     }
                     
                 </div>
-                { checkindata &&
-                    <div className="alert-success">
-                        <FontAwesomeIcon icon={faCheck} /> {checkindata}
+                { (checkindata || warning)&&
+                    <div className={checkindata ? "alert-success" : "alert-warning"}>
+                        <FontAwesomeIcon icon={checkindata? faCheck : faExclamationTriangle} /> {checkindata ? checkindata : warning}
                     </div>}
             </div>
         </div>

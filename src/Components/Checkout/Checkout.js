@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Select from 'react-select'
 import { checkoutAction } from '../../redux/Action/checkoutAction';
+import { getuserAction } from '../../redux/Action/getuserAction';
 
 const Checkout = () => {
     const dispatch = useDispatch()
@@ -13,30 +14,33 @@ const Checkout = () => {
 
     // response from server
     const checkOUT = useSelector(state => state.checkOUT);
-    const { checkoutdata } = checkOUT
-    
-    const accessType =  'Checkout'
+    const { checkoutdata, warning } = checkOUT
+    const grtalluser = useSelector(state => state.grtalluser);
+    const { users, userloading } = grtalluser
 
-    //  Select feild data
-    const options = [
-        { value: 'Masum', label: 'Masum' },
-        { value: 'Nadim', label: 'Nadim' },
-        { value: 'Sohag', label: 'Sohag' },
-        { value: 'Musfik', label: 'Musfik' },
-        { value: 'Ibne sina', label: 'Ibne sina' },
-    ]
+    let userdata = []
+    if (users !== null ) {
+        for (let e = 0; e < users.length; e++) {
+            userdata.push({
+                label: users[e].label,
+                value: users[e]._id
+            })
+        }
+    }
+    
+
+
+
+    React.useEffect(() => {
+        dispatch(getuserAction())
+    }, [dispatch])
 
     //  to checkout 
     function checkOut() {
-        const checkoutdata = {
-            "name": name,
-        }
-        const logdata = {
-            "name": name,
-            "accessType": accessType,
-        }
-        dispatch(checkoutAction(checkoutdata, logdata))
+        const updatedData = users.find(x => x._id === name)
+        dispatch(checkoutAction(updatedData))
         setalert(false)
+        userdata.slice(0, userdata.length)
     }
 
     return (
@@ -54,21 +58,30 @@ const Checkout = () => {
                     </div>
                     :
                     <div className="form">
-                        <div className="heading">
-                            <h3>Check out form</h3>
+                        {userloading ? 
+                        <div className="loading" style={{height: `173px`}}>
+                            Loading...
                         </div>
-                        <div className="form-item st">
-                            <Select options={options} onChange={(e) => setname(e.value)} />
-                        </div>
-                        <div className="form-item">
-                            <div className="checkin-btn" onClick={() => setalert(!alert)}>Check Out</div>
-                        </div>
+                        :
+                        <>
+                            <div className="heading">
+                                <h3>Check out form</h3>
+                            </div>
+                            <div className="form-item st">
+                                {userdata &&
+                                <Select options={userdata} onChange={(e) => setname(e.value)} />}
+                            </div>
+                            <div className="form-item">
+                                <div className="checkin-btn" onClick={() => setalert(!alert)}>Check Out</div>
+                            </div>
+                        </>
+                        }
                     </div>
                     }
                 </div>
-                { checkoutdata &&
-                    <div className="alert-success">
-                        <FontAwesomeIcon icon={faCheck} /> {checkoutdata}
+                { (checkoutdata || warning) &&
+                    <div className={checkoutdata ? "alert-success": "alert-warning"}>
+                        <FontAwesomeIcon icon={checkoutdata ? faCheck : faExclamationTriangle} /> {checkoutdata ? checkoutdata : warning}
                     </div>}
             </div>
         </div>

@@ -15,3 +15,16 @@ export const CHECKOUT_REQ = 'CHECKOUT_REQ'
 export const CHECKOUT_RES = 'CHECKOUT_RES'
 export const CHECKOUT_RES_HIDE = 'CHECKOUT_RES_HIDE'
 export const CHECKOUT_ERR = 'CHECKOUT_ERR'
+
+// create user
+export const CREATEUSER_REQ = 'CREATEUSER_REQ'
+export const CREATEUSER_RES = 'CREATEUSER_RES'
+export const CREATEUSER_DONE = 'CREATEUSER_DONE'
+export const UPDATEUSER_DONE = 'UPDATEUSER_DONE'
+export const CREATEUSER_RES_HIDE = 'CREATEUSER_RES_HIDE'
+export const CREATEUSER_ERR = 'CREATEUSER_ERR'
+
+// grt user
+export const GETUSER_REQ = 'GETUSER_REQ'
+export const GETUSER_RES = 'GETUSER_RES'
+export const GETUSER_ERR = 'GETUSER_ERR'
